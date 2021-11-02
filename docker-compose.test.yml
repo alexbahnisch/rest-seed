@@ -1,0 +1,19 @@
+version: "3.9"
+
+services:
+  api:
+    build: .
+    command: [
+        "go",
+        "test",
+        "-covermode=atomic",
+        "-v",
+        "thylacine/...",
+    ]
+    ports:
+      - 9000:9000
+    tty: true
+    volumes:
+      - ./cmd:/app/cmd/
+      - ./internal:/app/internal/
+      - ./test:/app/test/

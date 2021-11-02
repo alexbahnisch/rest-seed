@@ -1,0 +1,22 @@
+version: "3.9"
+
+services:
+  api:
+    build: .
+    command: [
+        "dlv",
+        "test",
+        "--accept-multiclient",
+        "--api-version=2",
+        "--headless",
+        "--listen=:9001",
+        "app/test",
+    ]
+    ports:
+      - 9000:9000
+      - 9001:9001
+    tty: true
+    volumes:
+      - ./cmd:/app/cmd/
+      - ./internal:/app/internal/
+      - ./test:/app/test/
